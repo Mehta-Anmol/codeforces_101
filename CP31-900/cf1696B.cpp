@@ -1,30 +1,34 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
+    
     int t;
-    cin >> t;
-    while (t--) {
+    cin>>t;
+    
+    while(t--){
         int n;
-        cin >> n;
-
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
+        cin>>n;
+        vector<int> nums(n);
+        for(int i=0;i<n;i++){
+            cin>>nums[i];
         }
-
-        int ans = 0;
-        for (int i = 0; i < n; i++) {
-            // start of a non-zero segment
-            if (a[i] != 0 && (i == 0 || a[i - 1] == 0)) {
-                ans++;
+        int count = 0;
+        int i = 0;
+        while(i < n){
+            while(i < n && nums[i] == 0){
+                i++;
             }
+            bool check = false;
+            while(i < n && nums[i] != 0){
+                check = true;
+                i++;
+            }
+            if(check) count++;
         }
-
-        cout << ans << '\n';
+        cout<<min(count,2)<<endl;
     }
     return 0;
 }
